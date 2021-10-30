@@ -1,0 +1,44 @@
+#from random import randint
+import time
+
+minimum = int(input("Enter the minimum value:\n"))
+maximum = int(input("Enter the maximum value:\n"))
+score = 0
+
+print("Enter a number between " + str(minimum) + " and " + str(maximum) + " for the computer to guess: ")
+user_number = int(input())
+
+while True:
+
+    if user_number < minimum or user_number > maximum:
+        print("Invalid number, try again")
+        user_number = int(input())
+        continue
+
+    computer_guess = int((minimum + maximum) / 2)
+    #computer_guess = random.randint(minimum, maximum)
+    score += 1
+    time.sleep(.25)
+    print("Computer: " + str(computer_guess))
+
+    if computer_guess < user_number:
+        minimum = computer_guess + 1
+
+    if computer_guess > user_number:
+        maximum = computer_guess - 1
+
+    if computer_guess == user_number:
+        print("oh that's the number I'm looking for")
+        time.sleep(1)
+        print("Computer got it in " + str(score) + " guesses.")
+        time.sleep(1)
+        ans = input("Do you want to run the program again?\n").lower()
+        if ans == "no":
+            print("Maybe another time. Goodbye!")
+            break
+        else:
+            score = score * 0
+            minimum = int(input("Enter the minimum value:\n"))
+            maximum = int(input("Enter the maximum value:\n"))
+            user_number = int(input("Enter a number between " + str(minimum) + " and " + str(maximum) + " for the computer to guess:\n"))
+            continue
